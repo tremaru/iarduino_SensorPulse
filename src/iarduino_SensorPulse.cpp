@@ -42,6 +42,7 @@ uint16_t	iarduino_SensorPulse::check(uint8_t i){
 					#endif
 					return ISP_func_CheckValid();	break;
 				}
+				return 0;
 			}
 
 //			проверка вершины пульса
@@ -62,7 +63,7 @@ uint16_t	iarduino_SensorPulse::ISP_func_CheckPulse(){
 
 //			проверка валидности результата
 uint8_t		iarduino_SensorPulse::ISP_func_CheckValid(){
-				uint8_t	i1, i2, j1=0, j2=0, j3=ISPVVC.ISP_flag_VAL;
+				uint8_t	i1, i2=0, j1=0, j2=0, j3=ISPVVC.ISP_flag_VAL;
 					if(ISPVVC.ISP_data_PIN[0]-ISP_ADC_FLUCTUATION>ISPVVC.ISP_data_PIN[1]){i1=1;}				//	i1 - вектор направления предыдущей точки графика
 					if(ISPVVC.ISP_data_PIN[0]+ISP_ADC_FLUCTUATION<ISPVVC.ISP_data_PIN[1]){i1=0;}				//	i1==1 => вверх, i1==0 => вниз
 				for(uint8_t k=1; k<9; k++){																		//	Проходим по 9 последним прочитанным значениям аналогового входа
